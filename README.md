@@ -39,4 +39,4 @@
 | id | 主キー、自動採番 |
 | difficulty | 難易度 | 
 | enemy_name | 敵の名前 |
-| score | 倒した敵の得点 |
+| score | 敵の得点 |
