@@ -44,9 +44,5 @@
 ## アプリから情報を取得
 https://github.com/user-attachments/assets/c34697a3-ef66-497f-8b93-88bcac84fe62
 
-
-
-
-
-
-
+## アプリへの情報追加・更新
+https://github.com/user-attachments/assets/b14f19b3-86cc-417f-a992-2c93cc75affd
