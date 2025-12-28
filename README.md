@@ -16,30 +16,34 @@
 - player_score
 - spawn_enemy
 
-## データベース構成
-### game_config
-|カラム名　　　　 |説明　　 |
-|-----|-----|
-| id | 主キー、自動採番 |
-| game_time | ゲーム時間 |
-| difficulty | 難易度 | 
+## ER図
+```mermaid
+erDiagram
+    game_config ||--o{ spawn_enemy : "敵の出現条件を定義する"
+    game_config ||--o{ player_score : "プレイ結果として記録される"
+    spawn_enemy ||--o{ player_score : "倒した結果が記録される"
 
-### player_score
-|カラム名　　　　 |説明　　 |
-|-----|-----|
-| id | 主キー、自動採番 |
-| player_name | プレイヤー名 |
-| score | 倒した敵の得点 |
-| difficulty | 難易度 | 
-| registered_at | 登録日時 | 
+    game_config {
+        int id PK "ID"
+        int game_time "ゲーム時間"
+        string difficulty "難易度"
+    }
 
-### spawn_enemy
-|カラム名　　　　 |説明　　 |
-|-----|-----|
-| id | 主キー、自動採番 |
-| difficulty | 難易度 | 
-| enemy_name | 敵の名前 |
-| score | 敵の得点 |
+    spawn_enemy {
+        int id PK "ID"
+        string difficulty FK "難易度"
+        string enemy_name "敵の名前"
+        int score "敵の得点"
+    }
+
+    player_score {
+        int id PK "ID"
+        string player_name "プレイヤー名"
+        int score "獲得スコア"
+        string difficulty FK "難易度"
+        datetime registered_at "登録日時"
+    }
+```
 
 ## アプリから情報を取得
 https://github.com/user-attachments/assets/c34697a3-ef66-497f-8b93-88bcac84fe62
