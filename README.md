@@ -14,17 +14,7 @@
 バックエンドの処理フローを構造的に理解できるようにすることを目的に、Spring Bootを用いてREST APIの設計から実装までを一貫して行いました。
 フレームワークの標準構成を活かし、データの取得および更新処理を実装しています。
 
-## データベース設計　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
-| 属性 | 設定値 |
-|-----|-----|
-| データベース名 | enemy_down |
-| テーブル名 | 以下の通り |
-
-- game_config
-- player_score
-- spawn_enemy
-
-## ER図
+## データベース設計（ER図）　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
 ```mermaid
 erDiagram
     game_config ||--o{ spawn_enemy : "敵の出現条件を定義する"
