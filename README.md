@@ -70,7 +70,7 @@ public class ConfigController {
   }
 ```
 
-本クラスは、ゲーム設定に関するデータを取得するためのService層のクラスです。<br>Controller からの要求を受け取り、Mapper を介してデータベースから設定情報を取得します。
+ゲーム設定に関するデータを取得するためのService層のクラスです。<br>Controller からの要求を受け取り、Mapper を介してデータベースから設定情報を取得します。
 ```java
 @Service
 public class ConfigService {
@@ -91,7 +91,7 @@ public class ConfigService {
   }
 ```
 
-本クラスは、MyBatis を利用した Mapper クラスであり、game_config および spawn_enemy テーブルに対する SQL を定義しています。<br>
+MyBatis を利用した Mapper クラスであり、game_config および spawn_enemy テーブルに対する SQL を定義しています。<br>
 データベースから取得した結果を各エンティティにマッピングし、Service 層に返却します。
 ```java
 @Mapper
