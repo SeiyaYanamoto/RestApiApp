@@ -111,6 +111,68 @@ public interface GameConfigMapper {
 ## アプリへの情報追加・更新
 https://github.com/user-attachments/assets/b14f19b3-86cc-417f-a992-2c93cc75affd
 
+各エンドポイントで Service クラスを呼び出し、Service 層を介して追加および更新処理の結果をクライアントに返却します。
+```java
+@RestController
+public class ConfigController {
+
+  @Autowired
+  private ConfigService service;
+  
+  @PostMapping(value = "/config")
+  public ResponseEntity<GameConfig> registerConfig(@RequestBody GameConfig config)
+      throws Exception {
+    GameConfig registerConfig = service.registerConfig(config);
+    return new ResponseEntity<>(registerConfig, HttpStatus.OK);
+  }
+
+  @PostMapping(value = "/updateEnemyScore")
+  public ResponseEntity<List<SpawnEnemy>> updateEnemyScore(@RequestBody SpawnEnemy enemy) {
+    List<SpawnEnemy> updatedSpawnEnemyList = service.updateEnemyScore(enemy);
+    return new ResponseEntity<>(updatedSpawnEnemyList, HttpStatus.OK);
+  }
+}
+```
+
+Controller からの要求を受け取り、Mapper を介してデータベースにアクセスします。
+```java
+@Service
+public class ConfigService {
+
+  @Autowired
+  private GameConfigMapper mapper;
+  
+    public GameConfig registerConfig(GameConfig config) throws Exception {
+    if (searchConfig(config.getDifficulty()) != null) {
+      throw new DuplicateConfigException("Duplicate Config Error!");
+    }
+    mapper.insertConfig(config);
+    return mapper.selectConfig(config.getDifficulty());
+  }
+
+  public List<SpawnEnemy> updateEnemyScore(SpawnEnemy enemy) {
+    mapper.updateEnemyScore(enemy);
+    return mapper.selectSpawnEnemyList(enemy.getDifficulty());
+  }
+}
+```
+
+game_config および spawn_enemy テーブルに対する追加・更新処理の SQL を定義しています。<br>
+Mapper は Service 層から呼び出され、データベースの状態を変更します。
+```java
+@Mapper
+public interface GameConfigMapper {
+
+  @Insert("insert game_config(game_time, difficulty) values(#{gameTime}, #{difficulty})")
+  int insertConfig(GameConfig config);
+
+  @Update("update spawn_enemy set score = #{score} where enemy_name = #{enemyName} and difficulty = #{difficulty}")
+  int updateEnemyScore(SpawnEnemy enemy);
+  
+}
+```
+
+
 ## 例外処理
 https://github.com/user-attachments/assets/1658e8f9-0503-4048-984f-5e52b00ae4dd
 
