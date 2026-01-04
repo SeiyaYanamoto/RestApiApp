@@ -180,10 +180,6 @@ https://github.com/user-attachments/assets/1658e8f9-0503-4048-984f-5e52b00ae4dd
 設定ファイルの内容が重複している場合に投げられる、独自に定義した例外クラスです。
 
 ```java
- //DuplicateConfigExceptionクラス
- 
-package plugin.enemydown.App;
-
 public class DuplicateConfigException extends Exception {
 
   public DuplicateConfigException() {
@@ -208,8 +204,6 @@ public class DuplicateConfigException extends Exception {
 未登録の場合のみ設定を登録し、登録後の設定情報を返します。
 
 ```java
-//ConfigServiceクラス 
- 
   public GameConfig registerConfig(GameConfig config) throws Exception {
     if (searchConfig(config.getDifficulty()) != null) {
       throw new DuplicateConfigException("Duplicate Config Error!");
@@ -223,8 +217,6 @@ public class DuplicateConfigException extends Exception {
 エラー内容を JSON 形式で返すことで、クライアント側で原因を判別しやすくしています。
 
 ```java
- //ConfigControllerクラス
-  
  @ExceptionHandler(value = DuplicateConfigException.class)
   public ResponseEntity<Map<String, String>> handleDuplicateConfig(
       DuplicateConfigException e, HttpServletRequest request) {
