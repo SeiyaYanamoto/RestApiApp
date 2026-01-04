@@ -46,6 +46,68 @@ erDiagram
 ## アプリから情報を取得
 https://github.com/user-attachments/assets/c34697a3-ef66-497f-8b93-88bcac84fe62
 
+ゲーム設定に関するリクエストを受け付ける Controller 層のクラスです。<br>各エンドポイントで Service クラスを呼び出し、Service 層を介して取得したデータをクライアントに返却します。
+```java
+@RestController
+public class ConfigController {
+
+  @Autowired
+  private ConfigService service;
+
+  @GetMapping(value = "/configList")
+  public List<GameConfig> searchConfigList() {
+    return service.searchConfigList();
+  }
+
+  @GetMapping(value = "/config")
+  public GameConfig searchConfig(@RequestParam String difficulty) {
+    return service.searchConfig(difficulty);
+  }
+
+  @GetMapping(value = "/spawnEnemyList")
+  public List<SpawnEnemy> spawnEnemyList(@RequestParam String difficulty) {
+    return service.searchSpawnEnemyList(difficulty);
+  }
+```
+
+本クラスは、ゲーム設定に関するデータを取得するためのService層のクラスです。<br>Controller からの要求を受け取り、Mapper を介してデータベースから設定情報を取得します。
+```java
+@Service
+public class ConfigService {
+
+  @Autowired
+  private GameConfigMapper mapper;
+
+  public List<GameConfig> searchConfigList() {
+    return mapper.selectConfigList();
+  }
+
+  public GameConfig searchConfig(String difficulty) {
+    return mapper.selectConfig(difficulty);
+  }
+
+  public List<SpawnEnemy> searchSpawnEnemyList(String difficulty) {
+    return mapper.selectSpawnEnemyList(difficulty);
+  }
+```
+
+本クラスは、MyBatis を利用した Mapper クラスであり、game_config および spawn_enemy テーブルに対する SQL を定義しています。<br>
+データベースから取得した結果を各エンティティにマッピングし、Service 層に返却します。
+```java
+@Mapper
+public interface GameConfigMapper {
+
+  @Select("select * from game_config order by id asc")
+  List<GameConfig> selectConfigList();
+
+  @Select("select * from game_config where difficulty = #{difficulty} order by id asc")
+  GameConfig selectConfig(String difficulty);
+
+   @Select("select * from spawn_enemy inner join game_config on spawn_enemy.difficulty = game_config.difficulty where spawn_enemy.difficulty = #{difficulty} order by spawn_enemy.id asc")
+  List<SpawnEnemy> selectSpawnEnemyList(String difficulty);
+```
+
+
 ## アプリへの情報追加・更新
 https://github.com/user-attachments/assets/b14f19b3-86cc-417f-a992-2c93cc75affd
 
