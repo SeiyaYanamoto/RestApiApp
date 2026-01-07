@@ -20,7 +20,6 @@ Controllerでリクエストを受け取り、Serviceでデータの取得・登
 erDiagram
     game_config ||--o{ spawn_enemy : "敵の出現条件を定義する"
     game_config ||--o{ player_score : "プレイ結果として記録される"
-    spawn_enemy ||--o{ player_score : "倒した結果が記録される"
 
     game_config {
         int id PK "ID"
