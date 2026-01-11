@@ -117,8 +117,16 @@ public interface GameConfigMapper {
 
 
 ## アプリへの情報追加・更新
+**Postman を用いて、ゲーム設定および敵情報の追加・更新を行う API の動作確認を行っています。**
+
 https://github.com/user-attachments/assets/b14f19b3-86cc-417f-a992-2c93cc75affd
 
+### 処理の流れ
+1. Controllerでリクエストを受信
+2. Service で重複チェック・更新処理を実施
+3. Mapperを介してDBに追加・更新処理を実行
+
+### Controller
 各エンドポイントで Service クラスを呼び出し、Service 層を介して追加および更新処理の結果をクライアントに返却します。
 ```java
 @RestController
@@ -141,7 +149,7 @@ public class ConfigController {
   }
 }
 ```
-
+### Service
 Controller からの要求を受け取り、Mapper を介してデータベースにアクセスします。
 ```java
 @Service
@@ -164,7 +172,7 @@ public class ConfigService {
   }
 }
 ```
-
+### Mapper
 game_config および spawn_enemy テーブルに対する追加・更新処理の SQL を定義しています。<br>
 Mapper は Service 層から呼び出され、データベースの状態を変更します。
 ```java
