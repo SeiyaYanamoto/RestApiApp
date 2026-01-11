@@ -52,8 +52,7 @@ https://github.com/user-attachments/assets/c34697a3-ef66-497f-8b93-88bcac84fe62
 2. Serviceで取得処理を集約
 3. Mapperを介してDBからデータを取得
 
-<br>
-
+### Controller
 ゲーム設定に関するリクエストを受け付ける Controller 層のクラスです。<br>各エンドポイントで Service クラスを呼び出し、Service 層を介して取得したデータをクライアントに返却します。
 ```java
 @RestController
@@ -78,6 +77,7 @@ public class ConfigController {
   }
 ```
 
+### Service
 ゲーム設定に関するデータを取得するためのService層のクラスです。<br>Controller からの要求を受け取り、Mapper を介してデータベースから設定情報を取得します。
 ```java
 @Service
@@ -99,6 +99,7 @@ public class ConfigService {
   }
 ```
 
+### Mapper
 MyBatis を利用した Mapper クラスであり、game_config および spawn_enemy テーブルに対する SQL を定義しています。<br>
 データベースから取得した結果を各エンティティにマッピングし、Service 層に返却します。
 ```java
