@@ -237,5 +237,4 @@ public class DuplicateConfigException extends Exception {
 - 現在はバックエンドの設計理解を優先するためローカル環境での実行に留めていますが、今後は AWS（EC2 + RDS など）を用いたデプロイにも取り組み、インフラを含めたアプリケーション構成への理解を深めていきたいと考えています。
 
 ## おわりに
-* Java学習者のアウトプットして、リポジトリ公開させていただきました。
 * 感想・コメント等あればXアカウント[@Seiya_engineer]( https://x.gd/daily_study)までご連絡くださると幸いです。
