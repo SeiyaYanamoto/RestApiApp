@@ -43,7 +43,16 @@ erDiagram
 ```
 
 ## アプリから情報を取得
+**Postmanを用いて、ゲーム設定および敵情報を取得するAPIの動作確認を行っています。**
+
 https://github.com/user-attachments/assets/c34697a3-ef66-497f-8b93-88bcac84fe62
+
+### 処理の流れ
+1. Controllerでリクエストを受信
+2. Serviceで取得処理を集約
+3. Mapperを介してDBからデータを取得
+
+<br>
 
 ゲーム設定に関するリクエストを受け付ける Controller 層のクラスです。<br>各エンドポイントで Service クラスを呼び出し、Service 層を介して取得したデータをクライアントに返却します。
 ```java
