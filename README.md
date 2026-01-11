@@ -191,6 +191,8 @@ public interface GameConfigMapper {
 
 
 ## 例外処理
+**設定ファイルの重複登録を防ぐため、独自例外を定義し、  業務ルール違反を明示的にハンドリングしています。**
+
 https://github.com/user-attachments/assets/1658e8f9-0503-4048-984f-5e52b00ae4dd
 
 設定ファイルの内容が重複している場合に投げられる、独自に定義した例外クラスです。
