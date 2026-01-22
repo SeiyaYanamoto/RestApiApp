@@ -1,4 +1,4 @@
-package plugin.enemydown.App.mapper;
+package RestApiApp.mapper;
 
 
 import java.util.List;
@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import plugin.enemydown.App.mapper.data.GameConfig;
-import plugin.enemydown.App.mapper.data.SpawnEnemy;
+import RestApiApp.mapper.data.GameConfig;
+import RestApiApp.mapper.data.SpawnEnemy;
 
 @Mapper
 public interface GameConfigMapper {
@@ -26,6 +26,4 @@ public interface GameConfigMapper {
 
   @Update("update spawn_enemy set score = #{score} where enemy_name = #{enemyName} and difficulty = #{difficulty}")
   int updateEnemyScore(SpawnEnemy enemy);
-
-
 }

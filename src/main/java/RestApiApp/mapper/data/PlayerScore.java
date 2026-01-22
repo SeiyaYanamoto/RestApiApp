@@ -1,4 +1,4 @@
-package plugin.enemydown.App.mapper.data;
+package RestApiApp.mapper.data;
 
 import java.time.LocalDateTime;
 import lombok.Getter;

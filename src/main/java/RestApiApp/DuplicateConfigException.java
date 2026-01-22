@@ -1,4 +1,4 @@
-package plugin.enemydown.App;
+package RestApiApp;
 
 public class DuplicateConfigException extends Exception {
 

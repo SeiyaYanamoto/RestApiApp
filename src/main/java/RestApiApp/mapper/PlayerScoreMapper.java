@@ -1,9 +1,9 @@
-package plugin.enemydown.App.mapper;
+package RestApiApp.mapper;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import plugin.enemydown.App.mapper.data.PlayerScore;
+import RestApiApp.mapper.data.PlayerScore;
 
 @Mapper
 public interface PlayerScoreMapper {

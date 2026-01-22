@@ -1,4 +1,4 @@
-package plugin.enemydown.App.controller;
+package RestApiApp.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.ZonedDateTime;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import plugin.enemydown.App.DuplicateConfigException;
-import plugin.enemydown.App.mapper.data.GameConfig;
-import plugin.enemydown.App.mapper.data.SpawnEnemy;
-import plugin.enemydown.App.service.ConfigService;
+import RestApiApp.DuplicateConfigException;
+import RestApiApp.mapper.data.GameConfig;
+import RestApiApp.mapper.data.SpawnEnemy;
+import RestApiApp.service.ConfigService;
 
 @RestController
 public class ConfigController {
@@ -40,8 +40,7 @@ public class ConfigController {
   }
 
   @PostMapping(value = "/config")
-  public ResponseEntity<GameConfig> registerConfig(@RequestBody GameConfig config)
-      throws Exception {
+  public ResponseEntity<GameConfig> registerConfig(@RequestBody GameConfig config) throws Exception {
     GameConfig registerConfig = service.registerConfig(config);
     return new ResponseEntity<>(registerConfig, HttpStatus.OK);
   }

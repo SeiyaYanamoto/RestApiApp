@@ -1,12 +1,12 @@
-package plugin.enemydown.App.service;
+package RestApiApp.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import plugin.enemydown.App.DuplicateConfigException;
-import plugin.enemydown.App.mapper.GameConfigMapper;
-import plugin.enemydown.App.mapper.data.GameConfig;
-import plugin.enemydown.App.mapper.data.SpawnEnemy;
+import RestApiApp.DuplicateConfigException;
+import RestApiApp.mapper.GameConfigMapper;
+import RestApiApp.mapper.data.GameConfig;
+import RestApiApp.mapper.data.SpawnEnemy;
 
 @Service
 public class ConfigService {
@@ -25,6 +25,7 @@ public class ConfigService {
   public List<SpawnEnemy> searchSpawnEnemyList(String difficulty) {
     return mapper.selectSpawnEnemyList(difficulty);
   }
+
   public GameConfig registerConfig(GameConfig config) throws Exception {
     if (searchConfig(config.getDifficulty()) != null) {
       throw new DuplicateConfigException("Duplicate Config Error!");

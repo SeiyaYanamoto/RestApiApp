@@ -1,4 +1,4 @@
-package plugin.enemydown.App;
+package RestApiApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
